@@ -1,7 +1,7 @@
 #include "DrawTriangel.h"
 #include <glad/glad.h>
 
-float vertices[] = {
+float vertices1[] = {
 		 0.5f, 0.5f, 0.0f,   // 右上角
 		 0.5f, -0.5f, 0.0f,  // 右下角
 		-0.5f, -0.5f, 0.0f, // 左下角
@@ -98,7 +98,7 @@ void DrawTriangel::initTriangleWithEBO()
 	glBindVertexArray(VAO);
 	// 2. 把我们的顶点数组复制到一个顶点缓冲中，供OpenGL使用
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices1), vertices1, GL_STATIC_DRAW);
 	// 3. 复制我们的索引数组到一个索引缓冲中，供OpenGL使用.GL_ELEMENT_ARRAY_BUFFER
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);

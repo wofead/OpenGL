@@ -36,6 +36,9 @@
     <ClCompile Include="VertexShader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="DrawTriangleWithColor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Draw.h">
@@ -51,6 +54,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="VertexShader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawTriangleWithColor.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

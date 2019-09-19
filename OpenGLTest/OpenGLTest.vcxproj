@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="Draw.cpp" />
     <ClCompile Include="DrawTriangel.cpp" />
+    <ClCompile Include="DrawTriangleWithColor.cpp" />
     <ClCompile Include="FragmentShader.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
@@ -138,6 +139,7 @@
   <ItemGroup>
     <ClInclude Include="Draw.h" />
     <ClInclude Include="DrawTriangel.h" />
+    <ClInclude Include="DrawTriangleWithColor.h" />
     <ClInclude Include="FragmentShader.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="VertexShader.h" />

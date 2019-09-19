@@ -3,6 +3,7 @@
 #include <GLFW/glfw3.h>
 #include "Draw.h"
 #include "Shader.h"
+#include "DrawTriangleWithColor.h"
 
 //glfwGLFW是一个专门针对OpenGL的C语言库，它提供了一些渲染物体所需的最低限度的接口
 //因为OpenGL只是一个标准/规范，具体的实现是由驱动开发商针对特定显卡实现的。由于OpenGL驱动版本众多，它大多数函数的位置都无法在编译时确定下来，需要在运行时查询。
@@ -52,10 +53,10 @@ int main()
 		return -1;
 	}
 
+	DrawTriangleWithColor drawTriangleWithColor = DrawTriangleWithColor();
+	
 
-	Draw draw = Draw();
-
-	Shader shader = Shader();
+	//Shader shader = Shader();
 
 	//渲染之前我们还要告诉OpenGL渲染窗口的大小，即视口，这样OpenGL才知道怎么根据窗口大小显示数据和坐标
 
@@ -63,6 +64,8 @@ int main()
 	//窗口大小发生改变的时候，视口大小也应该发生变化
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	
+	Shader shader("VertexShader.vs","FragMentShader.fs");
 
 	//我们不能渲染一次就退出，所有我们希望窗口在我们没有主动关闭它之前，它可以一直渲染，所以有一个循环渲染。
 	while (!glfwWindowShouldClose(window)) //函数在我们每次循环的开始前检查一次GLFW是否被要求退出
@@ -73,7 +76,7 @@ int main()
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);//glClearColor来设置清空屏幕所用的颜色
 		glClear(GL_COLOR_BUFFER_BIT);//glClear函数来清空屏幕的颜色缓冲，它接受一个缓冲位(Buffer Bit)来指定要清空的缓冲，可能的缓冲位有
 		//GL_COLOR_BUFFER_BIT，GL_DEPTH_BUFFER_BIT和GL_STENCIL_BUFFER_BIT。
-		if (flag == 1)
+		/*if (flag == 1)
 		{
 			float timeValue = glfwGetTime();
 			float greenValue = (sin(timeValue) / 2.0f) + 0.5f;
@@ -85,8 +88,9 @@ int main()
 		else {
 			glUseProgram(shader.getShaderProgram(2));
 			draw.toDrawTriangle(2);
-		}
-
+		}*/
+		shader.use();
+		drawTriangleWithColor.drawTriangle();
 		glfwSwapBuffers(window);//函数会交换颜色缓冲,它在这一迭代中被用来绘制，并且将会作为输出显示在屏幕上
 		glfwPollEvents();//监听出发时间，更新窗口状态，并调用对应的回调函数
 	}
