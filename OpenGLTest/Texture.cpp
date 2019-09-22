@@ -53,11 +53,19 @@ void Texture::setShader()
 	ourShader = Shader("shader/VertexShaderTex.vs", "shader/FragMentShaderTwoTex.fs");
 }
 
+void Texture::setTransform()
+{
+	trans = glm::mat4(1.0f);
+	trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
+	trans = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5));
+}
+
 Texture::Texture(std::string texturePath)
 {
 	//设置VAO，VBO以及纹理指针位置
 	setVertex();
 	setShader();
+	setTransform();
 	// 加载并生成纹理
 	glGenTextures(1, &texture1);
 	glBindTexture(GL_TEXTURE_2D, texture1);
@@ -106,12 +114,15 @@ void Texture::setAnotherTexture(std::string texturePath)
 	ourShader.use();
 	ourShader.setInt("texture1", 0); // 或者使用着色器类设置
 	ourShader.setInt("texture2", 1); // 或者使用着色器类设置
-	
+	unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
 }
 
 void Texture::useTexture()
 {
 	//glBindTexture(GL_TEXTURE_2D, texture);
+	trans = glm::rotate(trans, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+	trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.0f));
 	ourShader.use();
 	//glBindVertexArray(TexVAO);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -125,6 +136,11 @@ void Texture::useTwoTexture(float mixValue)
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, texture2);
 	ourShader.setFloat("mixValue", mixValue);
+	trans = glm::mat4(1.0f);
+	trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.0f));
+	trans = glm::rotate(trans, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+	unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
 	ourShader.use();
 	glBindVertexArray(TexVAO);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

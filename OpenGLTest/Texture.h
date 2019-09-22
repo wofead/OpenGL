@@ -9,6 +9,11 @@
 #include "Shader.h"
 
 #include <std/stb_image.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
+
 
 class Texture
 {
@@ -17,10 +22,12 @@ private:
 	unsigned char* anotherData;
 	int width, height, nrChannels;
 	unsigned int texture1, texture2, TexVAO, TexVBO, TexEBO;
+	glm::mat4 trans;
 	Shader ourShader;
 	void generateTexture(unsigned int texture, unsigned char* data);
 	void setVertex();
 	void setShader();
+	void setTransform();
 public:
 	Texture(std::string texturePath);
 	void setAnotherTexture(std::string texturePath);
