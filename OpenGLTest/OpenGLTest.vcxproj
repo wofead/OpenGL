@@ -70,7 +70,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>E:\OpenGL\OpenGL\OpenGLTest\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);E:\OpenGl\glfw-3.3.bin.WIN32\include</IncludePath>
+    <IncludePath>E:\OpenGl\OpenGLStudy\OpenGLTest\include;E:\OpenGL\OpenGL\OpenGLTest\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);E:\OpenGl\glfw-3.3.bin.WIN32\include</IncludePath>
     <LibraryPath>E:\OpenGl\glfw-3.3.bin.WIN32\lib-vc2019;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

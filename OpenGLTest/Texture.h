@@ -28,6 +28,7 @@ private:
 	void setVertex();
 	void setShader();
 	void setTransform();
+	void set3D();
 public:
 	Texture(std::string texturePath);
 	void setAnotherTexture(std::string texturePath);
